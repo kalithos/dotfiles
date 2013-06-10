@@ -1,0 +1,18 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[user]
+	name = Herbert Chang
+	email = kalithos@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+[branch]
+	autosetuprebase = always
+[alias]
+	log1 = log --pretty=oneline --abbrev-commit
+	log-vee = log --decorate --cherry-pick --oneline --graph --boundary
+	log-graph = log --all --graph --decorate
+	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
