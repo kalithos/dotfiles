@@ -16,3 +16,4 @@
 	log-vee = log --decorate --cherry-pick --oneline --graph --boundary
 	log-graph = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
+	pull-fp = pull --ff-only --prune
