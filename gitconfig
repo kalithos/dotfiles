@@ -17,3 +17,11 @@
 	log-graph = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
 	pull-fp = pull --ff-only --prune
+# for $deity's sake, check that anything we're getting is complete and sane
+# on a regular basis
+[transfer]
+    fsckobjects = true
+[fetch]
+    fsckobjects = true
+[receive]
+    fsckObjects = true
