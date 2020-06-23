@@ -7,18 +7,21 @@ set modelines=0
 
 " Normally we use vim-extensions. If you want true vi-compatibility
 " remove change the following statements
-set nocompatible	" Use Vim defaults instead of 100% vi compatibility
-set backspace=indent,eol,start	" more powerful backspacing
+set nocompatible                  " Use Vim defaults instead of 100% vi compatibility
+set backspace=indent,eol,start    " more powerful backspacing
 
 " Now we set some defaults for the editor
-set autoindent  		" always set autoindenting on
-set textwidth=75		" Don't wrap words by default
-set nobackup	    	" Don't keep a backup file
-set viminfo='20,\"1000	" read/write a .viminfo file, don't store more than
-			" 1000 lines of registers
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
+set autoindent          " always set autoindenting on
+set textwidth=75        " Don't wrap words by default
+set nobackup            " Don't keep a backup file
+set viminfo='20,\"1000  " read/write a .viminfo file, don't store more than
+                        " 1000 lines of registers
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
 set number
+set expandtab           " use spaces, not tabs
+set smarttab            " use shiftwidth/tabstop based on context
+set autoread            " reload unchanged buffers when file changed outside of vi
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
@@ -47,7 +50,7 @@ if has("autocmd")
  " Enabled file type detection
  " Use the default filetype settings. If you also want to load indent files
  " to automatically do language-dependent indenting add 'indent' as well.
- "filetype plugin on
+ filetype plugin indent on
 
  " When editing a file, always jump to the last cursor position
  autocmd BufReadPost *
@@ -58,18 +61,18 @@ endif " has ("autocmd")
 
 " Some Debian-specific things
 augroup filetype
-  au BufRead reportbug.*		set ft=mail
-  au BufRead reportbug-*		set ft=mail
+  au BufRead reportbug.*        set ft=mail
+  au BufRead reportbug-*        set ft=mail
 augroup END
 
 " The following are commented out as they cause vim to behave a lot
 " different from regular vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" If search string has uppercase letters, it's case sensitive
-set incsearch		" Incremental search
-"set autowrite		" Automatically save before commands like :next and :make
+"set showcmd         " Show (partial) command in status line.
+set showmatch        " Show matching brackets.
+set ignorecase       " Do case insensitive matching
+set smartcase        " If search string has uppercase letters, it's case sensitive
+set incsearch        " Incremental search
+"set autowrite       " Automatically save before commands like :next and :make
 
 "" My modifications
 
@@ -77,7 +80,7 @@ set incsearch		" Incremental search
 set wildmode=longest:full
 set wildmenu
 
-" if expand("%:p") =~ ".py$"
+" if expand("%:p") =~ ".py$" || expand("%:p") =~ ".tmpl"
   set ts=4
   set sts=4
   set sw=4
@@ -101,12 +104,12 @@ au InsertEnter * match TrailingWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match TrailingWhitespace /\s\+$/
 
 " go specific things
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+let g:go_fmt_command = "goimports"
 
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'kien/ctrlp.vim'
+Plug 'fatih/vim-go'
+Plug 'zxqfl/tabnine-vim'
+" Add plugins to &runtimepath
+call plug#end()
