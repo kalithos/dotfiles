@@ -1,9 +1,8 @@
 [core]
-	editor = vim
+	editor = vi
 	excludesfile = ~/.gitignore_global
 [user]
 	name = Herbert Chang
-	email = kalithos@gmail.com
 [color]
 	diff = auto
 	status = auto
@@ -17,11 +16,17 @@
 	log-graph = log --all --graph --decorate
 	log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
 	pull-fp = pull --ff-only --prune
+[push]
+	default = nothing
+[grep]
+	lineNumber = true
+[diff]
+	algorithm = patience
 # for $deity's sake, check that anything we're getting is complete and sane
 # on a regular basis
 [transfer]
-    fsckobjects = true
+	fsckobjects = true
 [fetch]
-    fsckobjects = true
+	fsckobjects = true
 [receive]
-    fsckObjects = true
+	fsckObjects = true
